@@ -1,0 +1,27 @@
+Install flake8 - Liniting tool
+- runinng it through docker compose
+docker-compose run --rm app sh -c "flake8"
+
+Unit Testing
+
+- Django test suite
+- Setup tests Per Django app
+- Run tests through Docker compose
+
+docker-compose run --rm app sh -c "python manage.py test"
+
+-- Note seperate your development.requirements to your production.requirements
+
+run our django project 
+1. Create Project: docker-compose run --rm app sh -c "django-admin startproject app ."
+2. Start our Services: docker-compose up
+
+GitHub Actions
+Trigger (@Push to GitHub) -> Jobs (run unit test) -> Result (success/fail)
+
+- config file .github/workflows/checks.yml
+- set Trigger
+
+Authenticate  Docker - docker login
+Add  secrets to GitHub project
+secrets encrypt

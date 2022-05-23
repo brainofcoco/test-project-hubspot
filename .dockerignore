@@ -1,0 +1,21 @@
+# exclude file in docker image - docker context
+#Note
+note.txt
+
+#Git
+.git
+.gitignore
+
+#Docker
+.docker
+
+# Python
+app/__pycache__/
+app/*/__pycache__/
+app/*/*/__pycache__/
+app/*/*/*/__pycache__/
+.env/
+.venv/
+venv/
+
+# building docker image - docker build .
