@@ -25,3 +25,101 @@ Trigger (@Push to GitHub) -> Jobs (run unit test) -> Result (success/fail)
 Authenticate  Docker - docker login
 Add  secrets to GitHub project
 secrets encrypt
+
+Testing
+- based on unittest library
+Django has [Test Client - dummy web browser, Simulate Authentication, Temporary Database]
+
+Django Rest Framework has [API test client, test.py or tests/ sub directory ]
+1. Test modules must start with test_
+2. Test directories must contain __init__.py
+
+Test Database
+- Test Database NEW
+
+Test classes
+- SimpleTestCase [No database, useful if no database is required, save time executing tests]
+- TestCase [Database]
+
+Writing Tests
+- Import test class [SimpleTestCase(No-DB) or TestCase(Support-DB)]
+- Import Objects to test
+- Define test class
+- Add test method
+- Setup inputs
+- Execute code to be tested
+- Check output
+
+Mocking - MOCK Testing
+- Override or Changing behaviour of dependencies for your Test
+- Avoid unintended side effects
+- Isolate code being tested
+
+Why use Mocking
+- Avoid relying on external Services
+  - cant guarantee they will be available
+  - Makes tests unpredictable and inconsistent
+
+- Avoid unintended consequnces
+  - Accidentally sending emails
+  - Overloading external Services
+
+MOCK TESTING SENERIO
+(register_user) => (create_in_db) => (send_welcome_email)[MOCK TEST SENDING EMAIL] =>
+
+- prevent emails
+- ensure send_welcome_email() called correctly
+
+Benefit of mocking 
+- Speed up tests - check_db() -> sleep()
+
+How to Mock code -
+
+- use unittest.mock library
+  - MagicMock/Mock - Replace real Objects
+  - Patch - overrides code for tests
+
+Testing Web Requests [Testing APIs]
+- Django TestClient
+- Make Requests
+- Check Result
+- Override Authenticate
+
+Database Arch.
+
+Psycopg2
+
+- most popular PostgresSQL adaptor for python (Django)
+(installation options)
+- psycopg2-binary for development
+- psycopg2 - compiles from source, requies dependencies [c compiler, python3-dev, libpq-dev]
+Equivalent pkg for Alpine [PostgresSQL-client, build-base, PostgresSQL-dev, musl-dev]
+
+Docker best practice
+  - clean up build dependencies
+
+Docker services timeline - Start Database Service - Add a wait for DB command to start database service first
+
+Django ORM
+- Object Relational Mapper (ORM)
+- Abstraction layer for data
+  - Django handles database structure and changes
+  - Focus on Python code
+  - Use any database (within reason)
+
+Using ORM
+- define models 
+- generate migeriation files
+- setup database
+- store data
+
+Model - EACH MODEL MAPS TO A TABLE
+- Models contain :
+  Name, Fields, Other metadata, Custom Python logic
+
+Creating migeriation
+ - ensure app is enabled in settings.py
+ - Use Django CLI - python manage.py makemigerations
+
+ Applying Migerations
+ - Use Django Cli - python manage.py migrate
